@@ -51,5 +51,6 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       backgroundColor: '#ffff99',
       margin: 15,
+      alignSelf: 'stretch'
     }
   });
