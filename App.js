@@ -1,13 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-export default class App extends React.Component {
+import { createStackNavigator } from 'react-navigation';
+
+import MainOptionsScreen from './screens/MainOptionsScreen.js';
+import SearchScreen from  './screens/SearchScreen.js';
+
+class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Image source={require('./assets/icon.png')}/>
         <TouchableOpacity 
-          //onPress=
+          onPress={() =>
+            this.props.navigation.navigate('MainOptionsScreen')
+          }
           style={styles.button}
         >
           <Text
@@ -18,6 +25,29 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default class App extends React.Component {
+  render() {
+    return <RootStack />;
+  }
+}
+
+const RootStack = createStackNavigator(
+  {
+    HomeScreen: HomeScreen,
+    MainOptionsScreen: MainOptionsScreen,
+    SearchScreen: SearchScreen,
+    
+  },
+  {
+    initialRouteName: 'HomeScreen',
+    navigationOptions: {
+      header: null,
+      headerStyle: {display:"none"},
+      navBarHidden: true
+    }
+  }
+);
 
 const styles = StyleSheet.create({
   container: {
